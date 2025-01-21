@@ -19,5 +19,6 @@ void reset_led(LED_STRIP_t led_strip);
 void clear_strip(LED_STRIP_t led_strip);
 LED_STRIP_t create_led_strip(int led_count, int gpio_pin);
 void destroy_led_strip(LED_STRIP_t *led_strip);
+void print_data(uart_inst_t *uart, LED_STRIP_t *led_strip);
 
 #endif

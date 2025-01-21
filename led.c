@@ -28,7 +28,7 @@ void build_strip(int position, LED_STRIP_t led_strip)
 
 void send_strip(LED_STRIP_t led_strip)
 {
-    
+
     for (int i = 0; i < led_strip.led_count; i++)
     {
         uint32_t color = led_strip.data[i];
@@ -77,10 +77,10 @@ LED_STRIP_t create_led_strip(int led_count, int gpio_pin)
 
     if (led_strip.data == NULL)
     {
-        print(uart1,"Memory allocation failed\n");
+        print(uart1, "Memory allocation failed\n");
         exit(1);
     }
-    
+
     gpio_init(gpio_pin);
     gpio_set_dir(gpio_pin, GPIO_OUT);
 
@@ -99,3 +99,18 @@ void destroy_led_strip(LED_STRIP_t *led_strip)
     led_strip->data = NULL;
 }
 
+void print_data(uart_inst_t *uart, LED_STRIP_t *led_strip)
+{
+    print(uart, "[+] LED Data GPIO%d = ", led_strip->gpio_pin);
+    for (int i = 0; i < led_strip->led_count; i++)
+    {
+        if (i == led_strip->led_count - 1)
+        {
+            print(uart, "%d\n\r", led_strip->data[i]);
+        }
+        else
+        {
+            print(uart, "%d:", led_strip->data[i]);
+        }
+    }
+}

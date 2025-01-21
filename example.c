@@ -18,6 +18,7 @@ int main()
     {
         sleep_ms(1000);
         build_strip(i, led_strip);
+        print_data(UART_ID, &led_strip);
         send_strip(led_strip);
         reset_led(led_strip);
         print(UART_ID,"[+] Current Led Value: %d\r\n", i);
